@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity() {
                     var posts = response.body()
                     Toast.makeText(baseContext,"fetched ${posts!!} post",Toast.LENGTH_LONG).show()
 
-                    var postAdapter = RetrofitAdapter(posts)
-                    binding.rvPosts.layoutManager = LinearLayoutManager(baseContext)
-                    binding.rvPosts.adapter = postAdapter
+                    var postsAdapter=RetrofitAdapter(posts)
+                    binding.rvPosts.layoutManager = LinearLayoutManager(this@MainActivity)
+                    binding.rvPosts.adapter=postsAdapter
 
 
                 }
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Toast.makeText(baseContext,t.message, Toast.LENGTH_LONG).show()
 
             }
 
